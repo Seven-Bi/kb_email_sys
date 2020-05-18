@@ -1,3 +1,8 @@
+#############################
+# Author: Chen Bi
+# Date: 18 May 2020
+#############################
+
 import pandas as pd
 import math
 

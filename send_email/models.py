@@ -1,3 +1,8 @@
+#############################
+# Author: Chen Bi
+# Date: 18 May 2020
+#############################
+
 from django.db import models
 from django.forms import ModelForm
 

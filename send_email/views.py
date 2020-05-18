@@ -1,3 +1,8 @@
+#############################
+# Author: Chen Bi
+# Date: 18 May 2020
+#############################
+
 from django.http import Http404
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -13,12 +18,18 @@ group_email = ['seven.albany.bi@live.com.au', 'steven.bb.0221@gmail.com', 'seven
 executor = Executor(max_workers=2)
 
 
+#############################
+# Index view
+#############################
 def index(request):
 	form = EmailForm()
 	return render(request, 'send_email/send_email_end.html', {'form': form})
 
 
 
+#############################
+# Group-Email send function
+#############################
 def send_group_emails(subject, body, sender, receiver):
 	email = EmailMessage(subject=subject,body=body, 
 		from_email=sender, to=[receiver,])
@@ -31,10 +42,10 @@ def send_group_emails(subject, body, sender, receiver):
 		pass
 		# print(traceback.format_exc())
 
-#############################
-# Group-Email send function
-#############################
 
+#############################
+# Group-Email send view
+#############################
 def send_off(request):
 	if request.method == 'POST':
 		start = time.time()
@@ -54,6 +65,10 @@ def send_off(request):
 	else:
 
 		return JsonResponse({'output': 'invalid request'})
+
+
+
+
 
 
 # def send_off(request):
