@@ -9,13 +9,15 @@ from django.http import JsonResponse
 from .forms import EmailForm
 from django.core.mail import EmailMessage
 from concurrent.futures import ThreadPoolExecutor as Executor
+from django.template.loader import render_to_string
 import traceback
 import time
 
 
 
-group_email = ['seven.albany.bi@live.com.au', 'steven.bb.0221@gmail.com', 'seven.albany.bi@gmail.com', '258933996@qq.com', 'yumeng950411@gmail.com', '353260410@qq.com', 'Tang353260410@gmail.com']
-executor = Executor(max_workers=2)
+group_email = ['seven.albany.bi@live.com.au', 'steven.bb.0221@gmail.com', 'seven.albany.bi@gmail.com']
+# group_email = ['seven.albany.bi@live.com.au', 'steven.bb.0221@gmail.com', 'seven.albany.bi@gmail.com', '258933996@qq.com', 'yumeng950411@gmail.com', '353260410@qq.com', 'Tang353260410@gmail.com']
+executor = Executor(max_workers=3)
 
 
 #############################
@@ -28,7 +30,7 @@ def index(request):
 
 
 #############################
-# Group-Email send function
+# Email send function
 #############################
 def send_group_emails(subject, body, sender, receiver):
 	email = EmailMessage(subject=subject,body=body, 
@@ -36,8 +38,6 @@ def send_group_emails(subject, body, sender, receiver):
 	email.content_subtype = 'html'
 	try:
 		email.send(fail_silently=False)
-		# next = request.POST.get('next', '/')
-		# return JsonResponse({'output': 'yes!!!'})
 	except Exception:
 		pass
 		# print(traceback.format_exc())
@@ -53,13 +53,16 @@ def send_off(request):
 		if form.is_valid():
 			# customer_email = form.cleaned_data['contact_email']
 			email_content = form.cleaned_data['email_content']
+			# html_content = render_to_string('send_email/demo.html')
+			# email_content = html_content
 			for single_email in group_email:
-
+				# thread pool launchs new work thread
 				executor.submit(send_group_emails, 'Warm Greeting', email_content, 'it@bhkb.com.au', single_email)
 
 			end = time.time()
 			time_cost = str(end - start)
-			return JsonResponse({'output': time_cost})
+			# return JsonResponse({'output': time_cost})
+			return JsonResponse({'output': 'all done :>'})
 		else:
 			return JsonResponse({'output': 'form data errors'})
 	else:

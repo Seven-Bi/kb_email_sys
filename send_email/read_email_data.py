@@ -4,7 +4,6 @@
 #############################
 
 import pandas as pd
-import math
 
 
 
@@ -16,12 +15,7 @@ def read_data_from_excel():
 	# clean corrupted data from dataframe
 	df['Customer'].fillna('Customer', inplace=True)
 	df.dropna(subset = ['Email'], inplace=True)
-
-	print(len(df))
-
-	df.drop_duplicates(subset='Email', keep = False, inplace = True) 
-
-	print(len(df))
+	df.drop_duplicates(subset='Email', keep = False, inplace = True)
 
 	# form output list
 	for i in range(len(df)):
@@ -29,5 +23,3 @@ def read_data_from_excel():
 		output.append(temp_dict)
 
 	return output
-
-read_data_from_excel()

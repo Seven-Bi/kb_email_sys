@@ -6,7 +6,6 @@
 <!doctype html>
 
 {% load static %}
-
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -24,7 +23,7 @@
   <body>
     <div class="container-fluid">
       <div class="d-flex justify-content-center" style="margin-bottom: 20px; margin-top: 10px;">
-        <img src="{% static 'img/bb.jpg' %}" height="280" width="500">
+        <img src="{% static 'img/bb.jpg' %}" height="330" width="600">
       </div>
       <div class="d-flex justify-content-center">
         <div class="col-md-6">
@@ -39,7 +38,19 @@
                   <a class="dropdown-item" href="#">Email to One</a>
                   <a class="dropdown-item" href="#">Email to All</a>
                   <div role="separator" class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Email Schedule</a>
+                  <a class="dropdown-item" href="#">Schedule Email</a>
+                </div>
+              </div>
+
+              <!-- email template -->
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose Template</button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Best Offer</a>
+                  <a class="dropdown-item" href="#">Promotion</a>
+                  <a class="dropdown-item" href="#">For Our Member</a>
+                  <div role="separator" class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">New Event</a>
                 </div>
               </div>
             </div>
@@ -57,6 +68,7 @@
         </div>
       </div>
     </div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
