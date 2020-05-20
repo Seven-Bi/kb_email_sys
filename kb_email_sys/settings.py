@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -123,6 +122,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_USE_TLS = True
@@ -134,3 +134,4 @@ EMAIL_PORT = 25  # 587
 EMAIL_HOST_USER = 'it@bhkb.com.au'  # don't include the @blah.com part! I have made this stupid mistakes before
 
 EMAIL_HOST_PASSWORD = 'Bunburyhotel4'
+

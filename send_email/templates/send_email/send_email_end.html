@@ -18,7 +18,8 @@
     <!-- load CKEditor -->
     <script src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 
-    <title>Hello, world!</title>
+    <title>Bunbury Koombana Bay Hotel</title>
+
   </head>
   <body>
     <div class="container-fluid">
@@ -30,28 +31,40 @@
           <form action="/sent/" method="POST"> 
             {% csrf_token %}
             <div class="input-group">
-              {{ form.contact_email }}
-              <button type="button" class="btn btn-success">Update Email DB</button>
+              <!-- {{ form.contact_email }} -->
+              <button type="button" id="update_db" class="btn btn-success">
+                <a href="/db_update/">
+                  Update DB
+                </a>
+              </button>
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Email to a Group</button>
+                <button id="email_strategy" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ email_strategy }}</button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Email to One</a>
-                  <a class="dropdown-item" href="#">Email to All</a>
+                  <a class="dropdown-item" id='email_opt_a' href="/email/a/">Email Group</a>
+                  <a class="dropdown-item" id='email_opt_b' href="/email/b/">Email One</a>
+                  <a class="dropdown-item" id='email_opt_c' href="/email/c/">Email All</a>
                   <div role="separator" class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Schedule Email</a>
+                  <a class="dropdown-item" id='email_opt_d' href="/email/d/">Schedule Email</a>
                 </div>
               </div>
 
               <!-- email template -->
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose Template</button>
+                <button id="template_chose" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ template_chose }}</button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Best Offer</a>
-                  <a class="dropdown-item" href="#">Promotion</a>
-                  <a class="dropdown-item" href="#">For Our Member</a>
+                  <a class="dropdown-item" id='template_opt_a' href="/template/1/">Best Offer</a>
+                  <a class="dropdown-item" id='template_opt_b' href="/template/2/">Promotion</a>
+                  <a class="dropdown-item" id='template_opt_c' href="/template/3/">For Our Member</a>
                   <div role="separator" class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">New Event</a>
+                  <a class="dropdown-item" id='template_opt_d' href="/template/4/">New Event</a>
                 </div>
+              </div>
+              <div class="input-group-append">
+                <button class="btn btn-info" type="button">
+                  <a href="/view_template/">
+                    Current template
+                  </a>
+                </button>
               </div>
             </div>
             <div class="form-group" style="margin-top: 15px;">
