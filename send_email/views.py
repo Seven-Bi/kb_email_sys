@@ -15,8 +15,10 @@ import time
 
 
 all_client_emails = []
-group_email = ['seven.albany.bi@live.com.au', 'steven.bb.0221@gmail.com', 'seven.albany.bi@gmail.com']
-# group_email = ['seven.albany.bi@live.com.au', 'steven.bb.0221@gmail.com', 'seven.albany.bi@gmail.com', '258933996@qq.com', 'yumeng950411@gmail.com', '353260410@qq.com', 'Tang353260410@gmail.com']
+# group_email = ['seven.albany.bi@live.com.au', 'steven.bb.0221@gmail.com', 'seven.albany.bi@gmail.com']
+# group_email = ['meigao40@yahoo.com.au','seven.albany.bi@live.com.au', 'steven.bb.0221@gmail.com', 'seven.albany.bi@gmail.com', '258933996@qq.com', 'yumeng950411@gmail.com', '353260410@qq.com', 'Tang353260410@gmail.com']
+# boss = 'meigao40@yahoo.com.au'
+
 executor = Executor(max_workers=3)
 
 map_dict_email = {
@@ -84,6 +86,8 @@ def get_latest_email_data(request):
 	global all_client_emails
 	all_client_emails.clear()
 	all_client_emails = read_data_from_excel()
+	print(len(all_client_emails))
+	print(all_client_emails[10])
 	return render(request, 'send_email/send_email_end.html', {'form': form, 'email_strategy': email_strategy, 'template_chose': template_chose})
 
 
@@ -124,7 +128,7 @@ def send_off(request):
 			email_content = html_content
 			for single_email in group_email:
 				# thread pool launchs new work thread
-				executor.submit(send_group_emails, 'Warm Greeting', email_content, 'it@bhkb.com.au', single_email)
+				executor.submit(send_group_emails, 'Greeting', email_content, 'it@bhkb.com.au', single_email)
 
 			end = time.time()
 			time_cost = str(end - start)
