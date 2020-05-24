@@ -86,8 +86,13 @@ def get_latest_email_data(request):
 	global all_client_emails
 	all_client_emails.clear()
 	all_client_emails = read_data_from_excel()
-	print(len(all_client_emails))
-	print(all_client_emails[10])
+	all_client_emails.append('manager@bhkb.com.au')
+	all_client_emails.append('meigao40@yahoo.com.au')
+	all_client_emails.append('philip.hooper@myboulevarde.com.au')
+	all_client_emails.append('steven.bb.0221@gmail.com')
+	all_client_emails = all_client_emails[3100:3121]
+	print(all_client_emails)
+
 	return render(request, 'send_email/send_email_end.html', {'form': form, 'email_strategy': email_strategy, 'template_chose': template_chose})
 
 
@@ -118,6 +123,7 @@ def send_group_emails(subject, body, sender, receiver):
 # Group-Email send view
 #############################
 def send_off(request):
+	global all_client_emails
 	if request.method == 'POST':
 		start = time.time()
 		form = EmailForm(request.POST)
@@ -126,9 +132,12 @@ def send_off(request):
 			# email_content = form.cleaned_data['email_content']
 			html_content = render_to_string('send_email/new_demo.html')
 			email_content = html_content
-			for single_email in group_email:
+
+			# for single_email in group_email:
+			for single_email in all_client_emails:
 				# thread pool launchs new work thread
 				executor.submit(send_group_emails, 'Greeting', email_content, 'it@bhkb.com.au', single_email)
+
 
 			end = time.time()
 			time_cost = str(end - start)
