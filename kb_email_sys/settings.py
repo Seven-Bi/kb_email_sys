@@ -131,7 +131,7 @@ EMAIL_HOST = 'smtp.office365.com'
 
 EMAIL_PORT = 25  # 587
 
-EMAIL_HOST_USER = 'it@bhkb.com.au'  # don't include the @blah.com part! I have made this stupid mistakes before
+EMAIL_HOST_USER = ''  # don't include the @blah.com part! I have made this stupid mistakes before
 
-EMAIL_HOST_PASSWORD = 'Bunburyhotel4'
+EMAIL_HOST_PASSWORD = ''
 
